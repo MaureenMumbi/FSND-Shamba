@@ -1,0 +1,852 @@
+{
+	"info": {
+		"_postman_id": "df349b34-4848-47a0-bb6e-30ac20ec6e1b",
+		"name": "Capstone Udacity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Farm Manager",
+			"item": [
+				{
+					"name": "Post a farm field",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Field 1\",\n    \"size\": 1.1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/fields",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"fields"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post inputs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjloTUNJTXphdFVnaWxld2F0b0o1cyJ9.eyJpc3MiOiJodHRwczovL21hdXJlZW4tZnNuZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjBiN2QzOGYwNWU1NzQwMDcwZjljYjYyIiwiYXVkIjoiZmFybSIsImlhdCI6MTYyNzAzMTY1MywiZXhwIjoxNjI3MDM4ODUzLCJhenAiOiJhaVV2OHJQQ0RiSTR1NTlhd0MwUXk3VHY4d3hWSmp1TiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OnByb2NlZHVyZXMiLCJwYXRjaDpmaWVsZHMgIiwicGF0Y2g6aW5wdXRzIiwicGF0Y2g6d29ya2VycyIsInBvc3Q6ZmllbGRzIiwicG9zdDppbnB1dHMgIiwicG9zdDpwcm9jZWR1cmVzIiwicG9zdDp3b3JrZXJzIl19.WqOIxzmn381CwtY-ZvTKYXPjqsqZzUeRPE0ruEOiMi9PNZ7GzV62qR6JdKZ_ep6pcn3oSjQDLdvA0wKpW2iUDeGholnmq5-OD3wD9Qbrudy39lN4gN9jHxOxGFAkTQSNeT1QhoKHqgSibxhJxmcYU2rd8xARPbQcbk800swySSE8g5fm6CGOu_d0yASVNclkheBNSbgRYd4R8uP2smWaVEtQvme3bCwag8tqE3zKFHvBi4poqtx_cdsaxiXhUSV0GAkrfJ7cQO7uIozNXu_1Dctdr4oASkAGbGcIPqDORhj2EvB2GzX75kfymLQa8YSMGxcIiGIa-9_PqOAcxlG5mQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"ABC Fertilizer\",\n    \"quantity\": 10,\n    \"type\": \"Fertilizer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/inputs",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"inputs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Worker",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"name\": \"Test User \",\n\"national_id\":785784754,\n\"phone_number\":\"+254637658475\",\n\"type\": \"Casual\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/workers",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"workers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post a procedure",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"name\":\"Procedure 1\",\n\"date\":\"2021-07-28\",\n\"activity\": \"Fertilizer application\",\n\"field_id\":2,\n\"worker_id\":1,\n\"input_id\":1,\n\"inputs_quantity\":10,\n\"image_link\":\"https://imagelink.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/procedures",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"procedures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View workers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjloTUNJTXphdFVnaWxld2F0b0o1cyJ9.eyJpc3MiOiJodHRwczovL21hdXJlZW4tZnNuZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjBiN2QzOGYwNWU1NzQwMDcwZjljYjYyIiwiYXVkIjoiZmFybSIsImlhdCI6MTYyNzAzMTY1MywiZXhwIjoxNjI3MDM4ODUzLCJhenAiOiJhaVV2OHJQQ0RiSTR1NTlhd0MwUXk3VHY4d3hWSmp1TiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OnByb2NlZHVyZXMiLCJwYXRjaDpmaWVsZHMgIiwicGF0Y2g6aW5wdXRzIiwicGF0Y2g6d29ya2VycyIsInBvc3Q6ZmllbGRzIiwicG9zdDppbnB1dHMgIiwicG9zdDpwcm9jZWR1cmVzIiwicG9zdDp3b3JrZXJzIl19.WqOIxzmn381CwtY-ZvTKYXPjqsqZzUeRPE0ruEOiMi9PNZ7GzV62qR6JdKZ_ep6pcn3oSjQDLdvA0wKpW2iUDeGholnmq5-OD3wD9Qbrudy39lN4gN9jHxOxGFAkTQSNeT1QhoKHqgSibxhJxmcYU2rd8xARPbQcbk800swySSE8g5fm6CGOu_d0yASVNclkheBNSbgRYd4R8uP2smWaVEtQvme3bCwag8tqE3zKFHvBi4poqtx_cdsaxiXhUSV0GAkrfJ7cQO7uIozNXu_1Dctdr4oASkAGbGcIPqDORhj2EvB2GzX75kfymLQa8YSMGxcIiGIa-9_PqOAcxlG5mQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/workers",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"workers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Inputs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/inputs",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"inputs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Fields",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/fields",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"fields"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Procedures",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/procedures",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"procedures"
+							]
+						},
+						"description": "Farm Manager"
+					},
+					"response": []
+				},
+				{
+					"name": "Update an Input",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"DFG Fertilizer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/inputs/1",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"inputs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Procedure",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"First Input Application\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/procedures/3",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"procedures",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a worker",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"national_id\": 5648790, \n    \"phone_number\":\"+2546236276373\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/workers/1",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"workers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Field",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"size\": 5.6}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/fields/2",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"fields",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Procedure",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://shamba.herokuapp.com/procedures/1",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"procedures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjloTUNJTXphdFVnaWxld2F0b0o1cyJ9.eyJpc3MiOiJodHRwczovL21hdXJlZW4tZnNuZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjBiN2QzOGYwNWU1NzQwMDcwZjljYjYyIiwiYXVkIjoiZmFybSIsImlhdCI6MTYyODQ1MTM0NywiZXhwIjoxNjI4NTM3NzQ3LCJhenAiOiJhaVV2OHJQQ0RiSTR1NTlhd0MwUXk3VHY4d3hWSmp1TiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmZpZWxkcyIsImdldDppbnB1dHMiLCJnZXQ6cHJvY2VkdXJlcyIsImdldDp3b3JrZXJzIiwicGF0Y2g6ZmllbGRzICIsInBhdGNoOmlucHV0cyIsInBhdGNoOndvcmtlcnMiLCJwb3N0OmZpZWxkcyIsInBvc3Q6aW5wdXRzIiwicG9zdDpwcm9jZWR1cmVzIiwicG9zdDp3b3JrZXJzIl19.Ocy2dM2ywf_8rZ0H_0ZyMu8CWpJXtnFOPXeR1sV4v4W0T7Wh0tqhDvwOTLQxsSZkdYbV6CiaHKSoVZOGGRrvh1YOd6LMAaVZI9ZGkawn_Os287q5Vsf_tSsHtwqGb1K7Nd1aPNu3ILNTLmDs0KZh2qv3_j2fuwry5s2aVACdQoKgJTiQNUZFyf2crWwaeW12Y3sTaAy490vhijionXSOB577f1L215DIy_ssMtgH9lFcv-EWfGYD_6bMYNnLu0lGqpQgipkaeREfbWEofGpMLMGAnAX1Q8qQ87a-z2xizVUNsGr00FAoVtCckCBNimYekdPYlupSh81b7bxxsnv4ew",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Manager",
+			"item": [
+				{
+					"name": "View Inputs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://shamba.herokuapp.com/inputs",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"inputs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View workers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjloTUNJTXphdFVnaWxld2F0b0o1cyJ9.eyJpc3MiOiJodHRwczovL21hdXJlZW4tZnNuZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjBiN2QzOGYwNWU1NzQwMDcwZjljYjYyIiwiYXVkIjoiZmFybSIsImlhdCI6MTYyNzAzMTY1MywiZXhwIjoxNjI3MDM4ODUzLCJhenAiOiJhaVV2OHJQQ0RiSTR1NTlhd0MwUXk3VHY4d3hWSmp1TiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OnByb2NlZHVyZXMiLCJwYXRjaDpmaWVsZHMgIiwicGF0Y2g6aW5wdXRzIiwicGF0Y2g6d29ya2VycyIsInBvc3Q6ZmllbGRzIiwicG9zdDppbnB1dHMgIiwicG9zdDpwcm9jZWR1cmVzIiwicG9zdDp3b3JrZXJzIl19.WqOIxzmn381CwtY-ZvTKYXPjqsqZzUeRPE0ruEOiMi9PNZ7GzV62qR6JdKZ_ep6pcn3oSjQDLdvA0wKpW2iUDeGholnmq5-OD3wD9Qbrudy39lN4gN9jHxOxGFAkTQSNeT1QhoKHqgSibxhJxmcYU2rd8xARPbQcbk800swySSE8g5fm6CGOu_d0yASVNclkheBNSbgRYd4R8uP2smWaVEtQvme3bCwag8tqE3zKFHvBi4poqtx_cdsaxiXhUSV0GAkrfJ7cQO7uIozNXu_1Dctdr4oASkAGbGcIPqDORhj2EvB2GzX75kfymLQa8YSMGxcIiGIa-9_PqOAcxlG5mQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/workers",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"workers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Fields",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://shamba.herokuapp.com/fields",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"fields"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Procedures",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/procedures",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"procedures"
+							]
+						},
+						"description": "Farm Manager"
+					},
+					"response": []
+				},
+				{
+					"name": "Post inputs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjloTUNJTXphdFVnaWxld2F0b0o1cyJ9.eyJpc3MiOiJodHRwczovL21hdXJlZW4tZnNuZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjBiN2QzOGYwNWU1NzQwMDcwZjljYjYyIiwiYXVkIjoiZmFybSIsImlhdCI6MTYyNzAzMTY1MywiZXhwIjoxNjI3MDM4ODUzLCJhenAiOiJhaVV2OHJQQ0RiSTR1NTlhd0MwUXk3VHY4d3hWSmp1TiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OnByb2NlZHVyZXMiLCJwYXRjaDpmaWVsZHMgIiwicGF0Y2g6aW5wdXRzIiwicGF0Y2g6d29ya2VycyIsInBvc3Q6ZmllbGRzIiwicG9zdDppbnB1dHMgIiwicG9zdDpwcm9jZWR1cmVzIiwicG9zdDp3b3JrZXJzIl19.WqOIxzmn381CwtY-ZvTKYXPjqsqZzUeRPE0ruEOiMi9PNZ7GzV62qR6JdKZ_ep6pcn3oSjQDLdvA0wKpW2iUDeGholnmq5-OD3wD9Qbrudy39lN4gN9jHxOxGFAkTQSNeT1QhoKHqgSibxhJxmcYU2rd8xARPbQcbk800swySSE8g5fm6CGOu_d0yASVNclkheBNSbgRYd4R8uP2smWaVEtQvme3bCwag8tqE3zKFHvBi4poqtx_cdsaxiXhUSV0GAkrfJ7cQO7uIozNXu_1Dctdr4oASkAGbGcIPqDORhj2EvB2GzX75kfymLQa8YSMGxcIiGIa-9_PqOAcxlG5mQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"ABC Fertilizer\",\n    \"quantity\": 10,\n    \"type\": \"Fertilizer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/inputs",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"inputs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post a farm field",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Field 1\",\n    \"size\": 1.1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/fields",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"fields"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Worker",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"name\": \"Test User \",\n\"national_id\":785784754,\n\"phone_number\":\"+254637658475\",\n\"type\": \"Casual\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/workers",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"workers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post a procedure",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"name\":\"Procedure 1\",\n\"date\":\"2021-07-28\",\n\"activity\": \"Fertilizer application\",\n\"field_id\":2,\n\"worker_id\":1,\n\"input_id\":1,\n\"inputs_quantity\":10,\n\"image_link\":\"https://imagelink.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/procedures",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"procedures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Procedure",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"First Input Application\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/procedures/3",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"procedures",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an Input",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"DFG Fertilizer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/inputs/1",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"inputs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Field",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"size\": 5.6}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/fields/2",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"fields",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a worker",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"national_id\": 5648790, \n    \"phone_number\":\"+2546236276373\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://shamba.herokuapp.com/workers/1",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"workers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Procedure",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://shamba.herokuapp.com/procedures/1",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"procedures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Input",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://shamba.herokuapp.com/inputs/1",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"inputs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Field",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://shamba.herokuapp.com/fields/4",
+							"protocol": "https",
+							"host": [
+								"shamba",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"fields",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a worker",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/workers/1",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"workers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjloTUNJTXphdFVnaWxld2F0b0o1cyJ9.eyJpc3MiOiJodHRwczovL21hdXJlZW4tZnNuZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjBmOTdhZTgzNTgyYmMwMDY5NDU3OTA4IiwiYXVkIjoiZmFybSIsImlhdCI6MTYyODQ1MTQwMiwiZXhwIjoxNjI4NTM3ODAyLCJhenAiOiJhaVV2OHJQQ0RiSTR1NTlhd0MwUXk3VHY4d3hWSmp1TiIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmZpZWxkcyIsImRlbGV0ZTppbnB1dHMiLCJkZWxldGU6cHJvY2VkdXJlcyIsImRlbGV0ZTp3b3JrZXJzIiwiZ2V0OmZpZWxkcyIsImdldDppbnB1dHMiLCJnZXQ6cHJvY2VkdXJlcyIsImdldDp3b3JrZXJzIiwicGF0Y2g6ZmllbGRzICIsInBhdGNoOmlucHV0cyIsInBhdGNoOnByb2NlZHVyZXMiLCJwYXRjaDp3b3JrZXJzIiwicG9zdDpmaWVsZHMiLCJwb3N0OmlucHV0cyIsInBvc3Q6cHJvY2VkdXJlcyIsInBvc3Q6d29ya2VycyJdfQ.j4QisLE5rUEyL1L0Qo_FXqGkfoHnaDZhNDnsijatJaW1xB6fdrRwOdeRoPEwJ2e6kBJIRAjquXYSctRJWFqOkeXFtGqlt-K774vFseBGpL1pQBPFwCo1u6E0kePHv_ku72QflUTZU6ZaqGfz0vE1bgvK4f_gkNdFoojpGJ-3reRiWaMfgGAc_2yheU-ieHwBNbxvprWWElAKxej0wY5xrEopl1KKzDmx2-N-xmRZwBkdYq1qJYDLzX-KLFK9ioTr3_kBtSOJEijjTvApWPtcVY8cjAo8psgtBdVNHNSNTcb1iIXneIDh85KKkE5Jd5wG_tAwPFm7iVo7g_vlm65JMQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
