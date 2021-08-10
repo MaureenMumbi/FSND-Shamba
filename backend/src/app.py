@@ -10,33 +10,30 @@ app = Flask(__name__)
 setup_db(app)
 CORS(app)
 
-    
+
 @app.route('/')
 def index():
     return jsonify({
-            'message': 'Welcome to a farming tracker API system'
-        })
+        'message': 'Welcome to a farming tracker API system'
+    })
+
 
 @app.route('/procedures', methods=['GET'])
 @requires_auth('get:procedures')
 def get_procedures(payload):
-        print(payload)
-
         procedures = Procedure.query.all()
-
         if not procedures:
             abort(404)
-        
+
         formattedprocedure = [procedure.format() for procedure in procedures]
         for procedure in formattedprocedure:
-            workername =get_worker(procedure['worker'])
-            fieldname =get_field(procedure['field'])
-            inputname=get_input(procedure['input'])
+            workername = get_worker(procedure['worker'])
+            fieldname = get_field(procedure['field'])
+            inputname = get_input(procedure['input'])
             procedure['worker'] = workername
-            procedure['field']=fieldname
+            procedure['field'] = fieldname
             procedure['input'] = inputname
 
-        
         return jsonify({
             'success': True,
             'total_procedures': len(procedures),
@@ -45,78 +42,81 @@ def get_procedures(payload):
 
 
 def get_worker(workerid):
-        worker =Worker.query.filter_by(id=workerid).first().name
+        worker = Worker.query.filter_by(id=workerid).first().name
         return worker
+
+
 def get_input(inputid):
-        input =Inputs.query.filter_by(id=inputid).first().name
+        input = Inputs.query.filter_by(id=inputid).first().name
         return input
 
-def get_field(fieldid):
-        field = Fields.query.filter_by(id=fieldid).first().name
-        return field
 
+def get_field(fieldid):
+       field = Fields.query.filter_by(id=fieldid).first().name
+       return field
 
     # add procedures
+
+
 @app.route('/procedures', methods=['POST'])
 @requires_auth('post:procedures')
 def createprocedure(payload):
         data = request.get_json()
-       
+
         if not data:
             abort(404)
 
         try:
-            new_name= data.get('name', None)
+            new_name = data.get('name', None)
             new_date = data.get('date', None)
             new_activity = data.get('activity', None)
-            new_field_id  = data.get('field_id', None)
+            new_field_id = data.get('field_id', None)
             new_worker_id = data.get('worker_id', None)
             new_input_id = data.get('input_id', None)
             new_inputs_qty = data.get('inputs_quantity', None)
             new_image_link = data.get('image_link', None)
             procedure = Procedure(name=new_name,
-                                date=new_date, 
-                                activity=new_activity,
-                                field_id=new_field_id,
-                                worker_id=new_worker_id,
-                                input_id=new_input_id, 
-                                inputs_quantity=new_inputs_qty, 
-                                image_link=new_image_link)
+                                  date=new_date,
+                                  activity=new_activity,
+                                  field_id=new_field_id,
+                                  worker_id=new_worker_id,
+                                  input_id=new_input_id,
+                                  inputs_quantity=new_inputs_qty,
+                                  image_link=new_image_link)
             procedure.insert()
         except Exception as e:
             abort(500)
-        
+
         return jsonify({
-            'success':True,
+            'success': True,
             'procedure': procedure.format(),
-            'created':procedure.id
+            'created': procedure.id
         })
 
-
-    #  Update Procedure 
+    #  Update Procedure
 @app.route('/procedures/<int:id>', methods=['PATCH'])
 @requires_auth('patch:procedures')
 def update_procedure(payload, id):
         data = request.get_json()
-        procedure =Procedure.query.filter(Procedure.id == id ).one_or_none()
+        procedure = Procedure.query.filter(Procedure.id == id).one_or_none()
 
         if not procedure:
             abort(404)
-        
-        try: 
-            updated_name= data.get('name', None)
-            updated_date= data.get('date', None)
-            updated_activity= data.get('activity', None)
-            updated_field= data.get('field_id', None)
-            updated_worker= data.get('worker_id', None)
-            updated_input= data.get('input_id', None)
-            updated_inputs_quantity= data.get('inputs_quantity', None)
+
+        try:
+            updated_name = data.get('name', None)
+            updated_date = data.get('date', None)
+            updated_activity = data.get('activity', None)
+            updated_field = data.get('field_id', None)
+            updated_worker = data.get('worker_id', None)
+            updated_input = data.get('input_id', None)
+            updated_inputs_quantity = data.get('inputs_quantity', None)
             updated_image_link = data.get('image_link', None)
 
             if updated_name:
-                procedure.name =updated_name
+                procedure.name = updated_name
             if updated_date:
-                procedure.date= updated_date
+                procedure.date = updated_date
             if updated_activity:
                 procedure.activity = updated_activity
             if updated_field:
@@ -129,22 +129,24 @@ def update_procedure(payload, id):
                 procedure.inputs_quantity = updated_inputs_quantity
             if updated_image_link:
                 procedure.image_link = updated_image_link
-            
+
             procedure.update()
-        
+
         except BaseException:
             abort(400)
-        
+
         return jsonify({
-            'success':True,
+            'success': True,
             'procedure': [procedure.format()]
-        }),200
-    
-    # Delete Procedure 
+        }), 200
+
+    # Delete Procedure
+
+
 @app.route('/procedures/<id>', methods=['DELETE'])
 @requires_auth('delete:procedures')
 def delete_procedure(payload, id):
-        procedure = Procedure.query.filter(Procedure.id==id).one_or_none()
+        procedure = Procedure.query.filter(Procedure.id == id).one_or_none()
 
         if not procedure:
             abort(404)
@@ -155,64 +157,56 @@ def delete_procedure(payload, id):
 
         return jsonify({
             'success': True,
-            'delete':id
-        }),200
+            'delete': id
+        }), 200
 
     # get workers
+
 
 @app.route('/workers', methods=['GET'])
 @requires_auth('get:workers')
 def get_workers(payload):
-        print(payload)
-
         workers = Worker.query.all()
-
-        print(workers)
-        
         if not workers:
             abort(404)
-
         return jsonify({
             'success': True,
             'workers': [worker.format() for worker in workers]
         }), 200
-
-
 
     # Add workers
 @app.route('/workers', methods=['POST'])
 @requires_auth('post:workers')
 def create_workers(payload):
         data = request.get_json()
-        print(data)
-        print(payload)
-
         try:
-            new_name= data.get('name', None)
+            new_name = data.get('name', None)
             new_national_id = data.get('national_id', None)
             new_phone_number = data.get('phone_number', None)
-            new_type  = data.get('type', None)
-            
+            new_type = data.get('type', None)
+
             worker = Worker(name=new_name,
-                                national_id=new_national_id, 
-                                phone_number=new_phone_number,
-                                type=new_type,
-                                )
+                            national_id=new_national_id,
+                            phone_number=new_phone_number,
+                            type=new_type,
+                            )
             worker.insert()
         except Exception as e:
             print(e)
             abort(404)
-        
+
         return jsonify({
-            'success':True,
+            'success': True,
             'worker': worker.format()
         })
 
     # Delete Worker
+
+
 @app.route('/workers/<id>', methods=['DELETE'])
 @requires_auth('delete:workers')
 def delete_worker(payload, id):
-        worker = Worker.query.filter(Worker.id==id).one_or_none()
+        worker = Worker.query.filter(Worker.id == id).one_or_none()
 
         if not worker:
             abort(404)
@@ -223,58 +217,54 @@ def delete_worker(payload, id):
 
         return jsonify({
             'success': True,
-            'delete':id
-        }),200
+            'delete': id
+        }), 200
 
-    #  Update Worker 
+    #  Update Worker
+
+
 @app.route('/workers/<int:id>', methods=['PATCH'])
 @requires_auth('patch:workers')
 def update_workers(payload, id):
         data = request.get_json()
-        print(data)
-        worker =Worker.query.filter(Worker.id == id ).one_or_none()
+       
+        worker = Worker.query.filter(Worker.id == id).one_or_none()
 
         if not worker:
             abort(404)
-        
-        try: 
+
+        try:
             updated_name = data.get('name', None)
-            updated_id= data.get('national_id', None)
+            updated_id = data.get('national_id', None)
             updated_no = data.get('phone_number', None)
-            updated_type= data.get('type', None)
-        
+            updated_type = data.get('type', None)
+
             if updated_name:
                 worker.name = updated_name
             if updated_id:
-                worker.national_id =updated_id
+                worker.national_id = updated_id
             if updated_no:
-                worker.phone_number= updated_no
+                worker.phone_number = updated_no
             if updated_type:
                 worker.type = updated_type
-            
+
             worker.update()
-        
+
         except BaseException as e:
             print(f'Error ==> {e}')
             abort(400)
-        
-        return jsonify({
-            'success':True,
-            'worker': [worker.format()]
-        }),200
-    
 
-    # Get Inputs 
+        return jsonify({
+            'success': True,
+            'worker': [worker.format()]
+        }), 200
+
+    # Get Inputs
 
 @app.route('/inputs', methods=['GET'])
 @requires_auth('get:inputs')
 def get_inputs(payload):
-        print(payload)
-
         inputs = Inputs.query.all()
-
-        print(inputs)
-        
         if not inputs:
             abort(404)
 
@@ -283,41 +273,40 @@ def get_inputs(payload):
             'inputs': [input.format() for input in inputs]
         }), 200
 
-        
 
-    # Add Inputs 
+    # Add Inputs
 @app.route('/inputs', methods=['POST'])
 @requires_auth('post:inputs')
 def create_inputs(payload):
         data = request.get_json()
-        print(data)
-        print(payload)
+      
         try:
-            new_name= data.get('name', None)
+            new_name = data.get('name', None)
             new_quantity = data.get('quantity', None)
-            new_type  = data.get('type', None)
+            new_type = data.get('type', None)
             new_metrics = data.get('metrics', None)
-            
+
             inputs = Inputs(name=new_name,
-                                quantity=new_quantity, 
-                                type=new_type, 
-                                metrics = new_metrics
-                                )
+                            quantity=new_quantity,
+                            type=new_type,
+                            metrics= new_metrics
+                            )
             inputs.insert()
         except Exception as e:
             print(e)
             abort(404)
-        
+
         return jsonify({
-            'success':True,
+            'success': True,
             'inputs': inputs.format()
         })
-    # Delete Inputs 
+    # Delete Inputs
+
 
 @app.route('/inputs/<id>', methods=['DELETE'])
 @requires_auth('delete:inputs')
 def delete_inputs(payload, id):
-        input = Inputs.query.filter(Inputs.id==id).one_or_none()
+        input = Inputs.query.filter(Inputs.id == id).one_or_none()
 
         if not input:
             abort(404)
@@ -328,56 +317,51 @@ def delete_inputs(payload, id):
 
         return jsonify({
             'success': True,
-            'delete':id
-        }),200
+            'delete': id
+        }), 200
 
-    #  Update Worker 
+    #  Update Worker
+
+
 @app.route('/inputs/<int:id>', methods=['PATCH'])
 @requires_auth('patch:inputs')
 def update_inputs(payload, id):
         data = request.get_json()
-        input =Inputs.query.filter(Inputs.id == id ).one_or_none()
+        input = Inputs.query.filter(Inputs.id == id).one_or_none()
 
         if not input:
             abort(404)
-        
-        try: 
-            updated_name= data.get('name', None)
+
+        try:
+            updated_name = data.get('name', None)
             updated_qty = data.get('quantity', None)
             updated_metrics = data.get('metrics', None)
-            updated_type= data.get('type', None)
-            
+            updated_type = data.get('type', None)
+
             if updated_name:
-                input.name =updated_name
+                input.name = updated_name
             if updated_qty:
-                input.phone_number= updated_qty
+                input.phone_number = updated_qty
             if updated_metrics:
-                input.metrics= updated_metrics
+                input.metrics = updated_metrics
             if updated_type:
                 input.type = updated_type
-            
+
             input.update()
-        
+
         except BaseException:
             abort(400)
-        
-        return jsonify({
-            'success':True,
-            'input': [input.format()]
-        }),200
-    
 
+        return jsonify({
+            'success': True,
+            'input': [input.format()]
+        }), 200
 
     # Get Fields
 @app.route('/fields', methods=['GET'])
 @requires_auth('get:fields')
 def get_fields(payload):
-        print(payload)
-
         fields = Fields.query.all()
-
-        print(fields)
-        
         if not fields:
             abort(404)
 
@@ -386,36 +370,36 @@ def get_fields(payload):
             'fields': [field.format() for field in fields]
         }), 200
 
-
-    # Add Fields 
+    # Add Fields
 @app.route('/fields', methods=['POST'])
 @requires_auth('post:fields')
 def create_fields(payload):
         data = request.get_json()
-        print(data)
-        print(payload)
+      
         try:
-            new_name= data.get('name', None)
+            new_name = data.get('name', None)
             new_size = data.get('size', None)
             print(new_name)
             print(new_size)
-            
-            fields = Fields(name=new_name,size=new_size)
+
+            fields = Fields(name=new_name, size=new_size)
             fields.insert()
         except Exception as e:
             print(e)
             abort(404)
-        
+
         return jsonify({
-            'success':True,
+            'success': True,
             'fields': fields.format()
         })
 
-    # Delete Fields 
+    # Delete Fields
+
+
 @app.route('/fields/<id>', methods=['DELETE'])
 @requires_auth('delete:fields')
 def delete_fields(payload, id):
-        field = Fields.query.filter(Fields.id==id).one_or_none()
+        field = Fields.query.filter(Fields.id == id).one_or_none()
 
         if not field:
             abort(404)
@@ -426,74 +410,75 @@ def delete_fields(payload, id):
 
         return jsonify({
             'success': True,
-            'delete':id
-        }),200
+            'delete': id
+        }), 200
+
 
 @app.route('/fields/<int:id>', methods=['PATCH'])
 @requires_auth('patch:fields ')
 def update_fields(payload, id):
         data = request.get_json()
-        field =Fields.query.filter(Fields.id == id ).one_or_none()
+        field = Fields.query.filter(Fields.id == id).one_or_none()
 
         if not field:
             abort(404)
-        
-        try: 
-            updated_name= data.get('name', None)
+
+        try:
+            updated_name = data.get('name', None)
             updated_size = data.get('size', None)
-            
-            
+
             if updated_name:
-                field.name =updated_name
+                field.name = updated_name
             if updated_size:
-                field.size= updated_size
-            
-            
+                field.size = updated_size
+
             field.update()
-        
+
         except BaseException:
             abort(400)
-        
+
         return jsonify({
-            'success':True,
+            'success': True,
             'field': [field.format()]
-        }),200
-    
+        }), 200
+
     # Error handlers for 400, 404, 422 and 500
+
 
 @app.errorhandler(400)
 def bad_request(error):
-        return jsonify({
-                'success': False,
-                'error': 400,
+      return jsonify({
+           'success': False,
+           'error': 400,
                 'message': 'bad request'
-            }), 400
+           }), 400
+
 
 @app.errorhandler(500)
 def server_error(error):
-        return jsonify({
-                'success': False,
-                'error': 500,
+      return jsonify({
+           'success': False,
+           'error': 500,
                 'message': 'server error'
-            }), 500
+           }), 500
+
 
 @app.errorhandler(404)
 def not_found(error):
-            return jsonify({
-                'success': False,
+          return jsonify({
+               'success': False,
                 'error': 404,
                 'message': 'resource not found'
-            }), 404
-
+               }), 404
 
 
 @app.errorhandler(422)
 def unprocessable(error):
-            return jsonify({
-                'success': False,
+          return jsonify({
+               'success': False,
                 'error': 422,
                 'message': 'unprocessable'
-            }), 422
+               }), 422
 
 
 @app.errorhandler(AuthError)
